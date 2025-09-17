@@ -64,6 +64,12 @@ class DatabaseHelper {
       final db = await instance.database;
       final test = await db.query('users');
       print("all data: $test");
+      print("inputs: $email $password");
+
+      print("running query ${await db.rawQuery(
+        'SELECT * FROM users WHERE email = ? AND password = ?',
+        [email, password],
+      )}");
       final maps = await db.query(
         'users',
         where: 'email = ? AND password = ?',
